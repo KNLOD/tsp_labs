@@ -89,18 +89,6 @@ P1(k) = (factorial(4)/(factorial((k-1))*(factorial(4-(k-1)))))*0.2^(k-1)*0.8^(4-
 end
 
 
-%{
-for i=0:4;
-    z=rand(1)
-    S=z
-    i=1;
-    while S>0
-        S(i)=S-p(i);
-        i=i+1;
-    end
-    x(i)= i
-end
-%} 
      
 
 
