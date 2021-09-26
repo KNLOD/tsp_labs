@@ -85,7 +85,7 @@ hist_of_x(n3, F3);
 
 
 for k=1:5;
-P1(k) = (factorial(4)/(factorial((k-1))*(factorial(4-(k-1)))))*0.2^k*0.8^(4-(k-1))
+P1(k) = (factorial(4)/(factorial((k-1))*(factorial(4-(k-1)))))*0.2^(k-1)*0.8^(4-(k-1))
 end
 
 
