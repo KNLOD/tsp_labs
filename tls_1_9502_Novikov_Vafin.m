@@ -80,28 +80,18 @@ hist_of_x(n1, F1);
 hist_of_x(n2, F2);
 hist_of_x(n3, F3);
 
+
+
 %Дискретная случайная величина
-
-
 
 for k=1:5;
 p(k) = (factorial(4)/(factorial((k-1))*(factorial(4-(k-1)))))*0.2^(k-1)*0.8^(4-(k-1))
 end
 
-N = 50
-k = [0:4]
-for i = 1:N
-   S = rand; 
-   j = 1;
-   while S>0 & j <= length(p)
-       S = S - p(j);
-       j = j + 1;
-   end
-   x(i) = k(j - 1)
-end
+[x1, Mx1, Dx1] = generate_dis_var(50, [0:4], p);
+[x2, Mx2, Dx2] = generate_dis_var(200, [0:4], p);
+[x3, Mx3, Dx3] = generate_dis_var(1000, [0:4], p);
 
-Mx = mean(x)
-Dx = var(x)
 
 
 figure
@@ -111,6 +101,24 @@ fplot(F_pw)
 hold on
 f_pw = piecewise(x<0, 0, 0<x<3, x/4.5, x>3, 0);
 fplot(f_pw)
+
+
+function [x, Mx, Dx] = generate_dis_var(N, k, p)
+
+for i = 1:N
+   S = rand; 
+   j = 1;
+   while S>0 & j <= length(p)
+       S = S - p(j);
+       j = j + 1;
+   end
+   x(i) = k(j - 1);
+end
+
+Mx = mean(x)
+Dx = var(x)
+
+end 
 
 function hist_of_x(n, F) 
 figure;
