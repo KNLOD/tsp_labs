@@ -80,6 +80,14 @@ hist_of_x(n1, F1);
 hist_of_x(n2, F2);
 hist_of_x(n3, F3);
 
+figure
+syms x
+F_pw = piecewise(x<0, 0, 0<x<3, (1/9)*x.^2, x>3, 1);
+fplot(F_pw)
+hold on
+f_pw = piecewise(x<0, 0, 0<x<3, x/4.5, x>3, 0);
+fplot(f_pw)
+
 
 
 %Дискретная случайная величина
@@ -127,15 +135,14 @@ end
 [Dx32_1, Dx32_2] = interval_Dispersion(alpha_2, n3, Mx3, x3)
 [Dx33_1, Dx33_2] = interval_Dispersion(alpha_3, n3, Mx3, x3)
 
+figure
+hist(x1)
 
 figure
-syms x
-F_pw = piecewise(x<0, 0, 0<x<3, (1/9)*x.^2, x>3, 1);
-fplot(F_pw)
-hold on
-f_pw = piecewise(x<0, 0, 0<x<3, x/4.5, x>3, 0);
-fplot(f_pw)
+hist(x2)
 
+figure
+hist(x3)
 
 function [x, Mx, Dx, Sx] = generate_dis_var(N, k, p)
 
