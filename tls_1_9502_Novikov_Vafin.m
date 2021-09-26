@@ -1,4 +1,5 @@
 close all
+clear all
 n1 = 50;
 n2 = 200;
 n3 = 1000;
@@ -81,20 +82,25 @@ hist_of_x(n3, F3);
 
 %Дискретная случайная величина
 
-k=[0:4];
-p = [0:1/5:1]
 
-for i=0:4;
-    z=rand(1)
-    S(i)=z
-    i=1;
-    while S>0
-        S(i)=S(i)-p(i);
-        i=i+1;
-    end
-    x(i)=k(i-1)
+
+for k=1:5;
+P1(k) = (factorial(4)/(factorial((k-1))*(factorial(4-(k-1)))))*0.2^k*0.8^(4-(k-1))
 end
 
+
+%{
+for i=0:4;
+    z=rand(1)
+    S=z
+    i=1;
+    while S>0
+        S(i)=S-p(i);
+        i=i+1;
+    end
+    x(i)= i
+end
+%} 
      
 
 
