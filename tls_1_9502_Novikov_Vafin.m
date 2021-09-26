@@ -88,10 +88,44 @@ for k=1:5;
 p(k) = (factorial(4)/(factorial((k-1))*(factorial(4-(k-1)))))*0.2^(k-1)*0.8^(4-(k-1))
 end
 
-[x1, Mx1, Dx1] = generate_dis_var(50, [0:4], p);
-[x2, Mx2, Dx2] = generate_dis_var(200, [0:4], p);
-[x3, Mx3, Dx3] = generate_dis_var(1000, [0:4], p);
+[x1, Mx1, Dx1, Sx1] = generate_dis_var(n1, [0:4], p);
+[x2, Mx2, Dx2, Sx2] = generate_dis_var(n2, [0:4], p);
+[x3, Mx3, Dx3, Sx3] = generate_dis_var(n3, [0:4], p);
 
+
+%{
+Интервальная оценка среднего
+%}
+[Mx11_1, Mx11_2] = interval_Average(alpha_1, n1, Sx1, Mx1)
+[Mx12_1, Mx12_2] = interval_Average(alpha_2, n1, Sx1, Mx1)
+[Mx13_1, Mx13_2] = interval_Average(alpha_3, n1, Sx1, Mx1)
+
+[Mx21_1, Mx21_2] = interval_Average(alpha_1, n2, Sx2, Mx2)
+[Mx22_1, Mx22_2] = interval_Average(alpha_2, n2, Sx2, Mx2)
+[Mx23_1, Mx23_2] = interval_Average(alpha_3, n2, Sx2, Mx2)
+
+[Mx31_1, Mx31_2] = interval_Average(alpha_1, n3, Sx3, Mx3)
+[Mx32_1, Mx32_2] = interval_Average(alpha_2, n3, Sx3, Mx3)
+[Mx33_1, Mx33_2] = interval_Average(alpha_3, n3, Sx3, Mx3)
+
+
+%{
+Интервальная оценка
+дисперсии
+%}
+
+
+[Dx11_1, Dx11_2] = interval_Dispersion(alpha_1, n1, Mx1, x1)
+[Dx12_1, Dx12_2] = interval_Dispersion(alpha_2, n1, Mx1, x1)
+[Dx13_1, Dx13_2] = interval_Dispersion(alpha_3, n1, Mx1, x1)    
+
+[Dx21_1, Dx21_2] = interval_Dispersion(alpha_1, n2, Mx2, x2)
+[Dx22_1, Dx22_2] = interval_Dispersion(alpha_2, n2, Mx2, x2)
+[Dx23_1, Dx23_2] = interval_Dispersion(alpha_3, n2, Mx2, x2)
+
+[Dx31_1, Dx31_2] = interval_Dispersion(alpha_1, n3, Mx3, x3)
+[Dx32_1, Dx32_2] = interval_Dispersion(alpha_2, n3, Mx3, x3)
+[Dx33_1, Dx33_2] = interval_Dispersion(alpha_3, n3, Mx3, x3)
 
 
 figure
@@ -103,7 +137,7 @@ f_pw = piecewise(x<0, 0, 0<x<3, x/4.5, x>3, 0);
 fplot(f_pw)
 
 
-function [x, Mx, Dx] = generate_dis_var(N, k, p)
+function [x, Mx, Dx, Sx] = generate_dis_var(N, k, p)
 
 for i = 1:N
    S = rand; 
@@ -117,6 +151,7 @@ end
 
 Mx = mean(x)
 Dx = var(x)
+Sx = std(x)
 
 end 
 
