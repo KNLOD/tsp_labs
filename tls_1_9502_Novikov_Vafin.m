@@ -15,10 +15,8 @@ alpha_3 = 0.01;
 F1 = ((rand(n1,1)).^(1/2)).*3; 
 F2 = ((rand(n2,1)).^(1/2)).*3; 
 F3 = ((rand(n3,1)).^(1/2)).*3; 
-%{
-F2 = (1/9)*((3*rand(n2,1)).^2);
-F3 = (1/9)*((3*rand(n3,1)).^2);
-%}
+
+
 %{
 Проводим точечную оценку среднего,
 дисперсии и СКО
@@ -135,14 +133,19 @@ end
 [Dx32_1, Dx32_2] = interval_Dispersion(alpha_2, n3, Mx3, x3)
 [Dx33_1, Dx33_2] = interval_Dispersion(alpha_3, n3, Mx3, x3)
 
-figure
-hist(x1)
+hist_of_dis(x1,p)
+hist_of_dis(x2,p)
+hist_of_dis(x3,p)
 
-figure
-hist(x2)
 
+function hist_of_dis(x,p)
 figure
-hist(x3)
+centers = [0:4];
+counts = hist(x,5)./(length(x));
+bar(centers, [counts;p])
+end 
+
+
 
 function [x, Mx, Dx, Sx] = generate_dis_var(N, k, p)
 
