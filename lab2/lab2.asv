@@ -1,0 +1,19 @@
+clear all
+close all
+N=200;
+K=400;
+mu=4; %среднее по ансамблю
+sigma=8;
+xi = normrnd(mu,sigma,[N,K]); % генерация матрицы с К реализациями случайного процесса
+
+figure
+
+for i=1:N
+    xi_average(i)=0;
+    for j=1:K
+        xi_average(i) = xi_average(i) + xi(j)/K
+        
+    end
+end
+
+                       
