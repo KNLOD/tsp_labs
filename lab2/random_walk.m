@@ -36,7 +36,18 @@ figure
 scatter_rm_walk(rm_walk, scatter_pos1,1)
 scatter_rm_walk(rm_walk, scatter_pos2,2)
 
-ar = autocorr(
+%{
+-----Расчет автокорр функции----
+%}
+rm_walk_shifted=circshift(rm_walk,1);
+rm_walk_times=rm_walk_shifted.*rm_walk;
+
+for i=1:N;
+    autocorr_rm_walk(i)=mean(rm_walk_times(i,:));
+end
+
+figure
+plot(autocorr_rm_walk)
 
 function scatter_rm_walk(rm_walk, scatter_pos,plot_number)
 k=length(scatter_pos(:,1))
