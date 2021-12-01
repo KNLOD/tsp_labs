@@ -56,9 +56,9 @@ hold on
 -----Теоретический расчет sigma и АКФ----
 %}
 
-sigma=std(rm_walk(:,5))
-a_corr=mean(rm_walk(:,5).*rm_walk(:,5-l1))
-
+n=0:N-1;
+a_corr_theoretical=0.05*(1-0.9.^n)./(1-0.9).^2;
+plot(a_corr_theoretical);
 
 function scatter_rm_walk(rm_walk, scatter_pos,plot_number)
 k=length(scatter_pos(:,1))

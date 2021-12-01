@@ -59,9 +59,7 @@ hold on
 %{
 -----Теоретический расчет АКР----
 %}
-a_corr=mean(rm_walk(:,1).*rm_walk(:,2))
-plot(a_corr)
-
+plot([1:N],[0:N-1])
 
 function scatter_rm_walk(rm_walk, scatter_pos,plot_number)
 k=length(scatter_pos(:,1))
