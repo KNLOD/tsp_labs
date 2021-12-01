@@ -21,6 +21,12 @@ for i=1:K;
 end 
 
 %{
+----------Теоретический расчет mu-----------
+%}
+
+mu = mean(rm_walk(:,1))
+
+%{
 ----Построение всех реализаций на одном полотне------
 %}
 figure
@@ -48,6 +54,14 @@ end
 
 figure
 plot(autocorr_rm_walk)
+hold on
+
+%{
+-----Теоретический расчет АКР----
+%}
+a_corr=mean(rm_walk(:,1).*rm_walk(:,2))
+plot(a_corr)
+
 
 function scatter_rm_walk(rm_walk, scatter_pos,plot_number)
 k=length(scatter_pos(:,1))

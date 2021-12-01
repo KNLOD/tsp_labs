@@ -51,6 +51,14 @@ end
 
 figure
 plot(autocorr_rm_walk)
+hold on
+%{
+-----Теоретический расчет sigma и АКФ----
+%}
+
+sigma=std(rm_walk(:,5))
+a_corr=mean(rm_walk(:,5).*rm_walk(:,5-l1))
+
 
 function scatter_rm_walk(rm_walk, scatter_pos,plot_number)
 k=length(scatter_pos(:,1))
