@@ -62,8 +62,9 @@ function P_obs=markov_obs(z_t)
 P_obs=zeros(4,4);
 for i=1:length(z_t)-1;
     P_obs(z_t(i),z_t(i+1))=P_obs(z_t(i),z_t(i+1))+1;
+    P_obs(z_t(i), :) = P_obs(z_t(i), :)./sum(P_obs(z_t(i), :));  %нормируем
 end
-P_obs=P_obs./length(z_t);        %нормируем
+
 end
 
 function z_t=markov_chain_bh(mc, P_cum, K)

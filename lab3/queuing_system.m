@@ -3,7 +3,7 @@ mu=5;
 n=2;
 m=10;
 ro=lambda/mu
-ro_0=1/(1+ro)
+ro_0=1+(ro^2/factorial(2))
 
 P_otk=(ro^(m+n))/((n^m)*(factorial(n)))*ro_0
 Q=1-P_otk
